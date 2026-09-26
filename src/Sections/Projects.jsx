@@ -13,7 +13,7 @@ function Projects() {
       image: carrent,
       name: "Car Rent Website",
       brief: "Scalable car-rent website service",
-      link: "https://pantelisan2888.github.io/car-rent-website/",
+      link: "https://panteliscoding.github.io/PantelisCoding-Car-Rental-Service-Template/",
       technologies: ["HTML", "CSS", "Javascript"],
     },
     {
