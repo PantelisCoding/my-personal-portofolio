@@ -12,7 +12,7 @@ function Projects() {
     {
       image: carrent,
       name: "Car Rent Website",
-      brief: "Scalable car-rent website website service",
+      brief: "Scalable car-rent website service",
       link: "https://pantelisan2888.github.io/car-rent-website/",
       technologies: ["HTML", "CSS", "Javascript"],
     },
@@ -27,28 +27,28 @@ function Projects() {
       image: calculator,
       name: "Calculator App",
       brief: "A simple and functional calculator app",
-      link: "#", 
+      link: "#",
       technologies: ["HTML", "CSS", "JavaScript"],
     },
     {
       image: todoapp,
       name: "To-Do App",
       brief: "A task management app to organize your work",
-      link: "#", 
+      link: "#",
       technologies: ["HTML", "CSS", "JavaScript"],
     },
-     {
+    {
       image: techshop,
       name: "E-commerce tech",
       brief: "A fully working online tech-store",
-      link: "https://eshop-frontend-fg0jb5kwx-pantelisdevs-projects.vercel.app/", 
-      technologies: [ "tailwind", "React", "SQL", "Java"],
+      link: "https://eshop-frontend-fg0jb5kwx-pantelisdevs-projects.vercel.app/",
+      technologies: ["tailwind", "React", "SQL", "Java"],
     },
     {
       image: bookmanager,
       name: "Book Manager Application",
       brief: "A fully working online tech-store",
-      link: "https://github.com/PantelisCoding/Book-Manager.git", 
+      link: "https://github.com/PantelisCoding/Book-Manager.git",
       technologies: ["SQL", "tailwind", "React", "Java"],
     }
   ]);
@@ -71,7 +71,7 @@ function Projects() {
                 onClick={(e) => {
                   if (project.link === "#") {
                     e.preventDefault();
-                    alert("Project link coming soon!"); 
+                    alert("Project link coming soon!");
                   }
                 }}
               >

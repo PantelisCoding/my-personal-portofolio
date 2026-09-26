@@ -21,9 +21,10 @@ export default function About() {
           </h2>
           <div className='p-8 mb-6 rounded-xl border-white/10 border-2 hover:-translate-y-1 transition-all hover:shadow-[0_4px_12px_rgba(59,130,246,0.2)]'>
             <p className='text-gray-300 mb-5 text-xl'>
-            As a skilled and experienced developer in building websites and CRUD applications, I'm dedicated to creating top-notch web applications for clients.
+              As a skilled and experienced developer in building websites and CRUD applications, I'm dedicated to creating top-notch web applications for clients.
 
-            With a passion for coding and a deep understanding, I excel in crafting robust and user-friendly solutions tailored to meet client needs. My expertise in Java, MongoDB, Express.js, React.js, Node.js, React Native, and Next.js, Vue js, enables me to deliver efficient, scalable, and high-performance applications.</p>
+              With a passion for coding and a deep understanding, I excel in crafting robust and user-friendly solutions tailored to meet client needs. My expertise in Java, MongoDB, Express.js, React.js, Node.js, React Native, and Next.js, Vue js, enables me to deliver efficient, scalable, and high-performance applications.
+            </p>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
             <div className='rounded-xl p-6 hover:-translate-y-1 transition-all border-white/10 border-2 hover:shadow-[0_4px_12px_rgba(59,130,246,0.2)]'>
