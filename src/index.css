@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import "tailwindcss";
+
+
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family:'Verdana, Arial, Helvetica, sans-serif';
+  background:#1E1E1E;
+  color: #ffff;
+  
+}
+
+
+
+@layer utilities {
+  @keyframes loading-bar {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400px);
+    }
+  }
+
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-loading-bar {
+    animation: loading-bar 1.5s linear infinite;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+}
+
+/*
+@layer base {
+  :root {
+    --font-dancing-script: 'Dancing Script', cursive;
+  }
+}
+
+
+
+@layer utilities {
+  .font-dancing-script {
+    font-family: var(--font-dancing-script);
+  }
+}
+*/
+
+
+@font-face {
+  font-family: 'Agustina';
+  font-style: normal;
+  font-weight: normal;
+  src: url('./assets/Agustina.woff') format('woff');
+}
+
+@layer base {
+  :root {
+    --font-agustina: 'Agustina', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-agustina {
+    font-family: var(--font-agustina);
+  }
+}
+
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 2s ease, transform 2s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
