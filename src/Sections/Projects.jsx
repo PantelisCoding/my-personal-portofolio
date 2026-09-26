@@ -5,7 +5,7 @@ import calculator from "../assets/calculator.png";
 import todoapp from "../assets/myproject3.png";
 import RevealOnScroll from '../Ui/RevealOnScroll';
 import techshop from '../assets/techshop.png';
-import bookmanager from '../assets/bookmanager.png';
+import bookmanager from "../assets/bookmanager.png";
 
 function Projects() {
   const [projects] = useState([
@@ -75,11 +75,13 @@ function Projects() {
                   }
                 }}
               >
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  className='w-full h-48 object-contain rounded-lg mb-4'
-                />
+                <div className='w-full aspect-video bg-[#0f0f0f] rounded-lg mb-4 flex items-center justify-center overflow-hidden'>
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className='max-w-full max-h-full object-contain'
+                  />
+                </div>
                 <h3 className='text-2xl font-bold text-gray-100 mb-2'>{project.name}</h3>
                 <h3 className='text-gray-300 mb-4'>{project.brief}</h3>
                 <div className='flex flex-wrap justify-center gap-2'>
