@@ -41,7 +41,7 @@ function Projects() {
       image: techshop,
       name: "E-commerce tech",
       brief: "A fully working online tech-store",
-      link: "https://eshop-frontend-fg0jb5kwx-pantelisdevs-projects.vercel.app/",
+      link: "https://eshop-frontend-aq3kz81mz-pantelisdevs-projects.vercel.app/",
       technologies: ["tailwind", "React", "SQL", "Java"],
     },
     {
