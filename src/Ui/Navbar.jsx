@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { MdMenu } from "react-icons/md";
 import { GoSun } from "react-icons/go";
-import { GoMoon } from "react-icons/go";
-
 
 function Navbar({ isMenuOpen, setIsMenuOpen }) {
   const [isLightMode, setIsLightMode] = useState(false);
 
+  // ===== ORIGINAL LIGHT MODE LOGIC — untouched =====
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
   }, [isMenuOpen]);
@@ -16,48 +15,44 @@ function Navbar({ isMenuOpen, setIsMenuOpen }) {
     document.body.style.backgroundColor = isLightMode ? "white" : "";
   }, [isLightMode]);
 
-
-useEffect(() => {
+  useEffect(() => {
     const paragraphs = document.querySelectorAll("p");
     paragraphs.forEach((p) => {
-        p.style.color = isLightMode ? "black" : ""; 
+      p.style.color = isLightMode ? "black" : "";
     });
-}, [isLightMode]);
+  }, [isLightMode]);
 
-useEffect(() => {
-  const contactSection = document.querySelector("#contact");
-  if (contactSection) {
+  useEffect(() => {
+    const contactSection = document.querySelector("#contact");
+    if (contactSection) {
       if (isLightMode) {
-          contactSection.classList.remove("dark-mode");
+        contactSection.classList.remove("dark-mode");
       } else {
-          contactSection.classList.add("dark-mode");
+        contactSection.classList.add("dark-mode");
       }
-  }
-}, [isLightMode]);
-
-
-
-
+    }
+  }, [isLightMode]);
 
   useEffect(() => {
     const homeElements = document.getElementsByClassName("about-me");
     if (homeElements.length > 0) {
       for (let element of homeElements) {
-        element.style.color = isLightMode ? "black" : ""; 
+        element.style.color = isLightMode ? "black" : "";
       }
     }
   }, [isLightMode]);
+
   const toggleLightMode = () => {
     setIsLightMode((prev) => !prev);
   };
+  // ===== END ORIGINAL LOGIC =====
 
   return (
-    <nav className="fixed top-0 w-full z-40 bg-[rgba(10,10,10,0.8)] backdrop-blur-lg px-1 border-b border-white/10 shadow-lg">
+    <nav className="fixed top-0 w-full z-40 bg-[rgba(10,10,10,0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center font-mono h-16">
           <Logo />
 
-         
           {!isMenuOpen && (
             <button
               onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -68,47 +63,29 @@ useEffect(() => {
             </button>
           )}
 
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
-              className="group text-gray-300 text-lg transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#4285F4] hover:via-[#DB4437] hover:to-[#F4B400] relative"
-            >
-              Home
-              <span className="absolute -bottom-0.5 left-0 h-[1px] w-0 bg-gradient-to-r from-[#4285F4] via-[#DB4437] to-[#F4B400] group-hover:w-full group-focus:w-full transition-all duration-300 ease-in-out"></span>
-            </a>
-
-            <a
-              href="#about"
-              className="group text-gray-300 text-lg transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#4285F4] hover:via-[#DB4437] hover:to-[#F4B400] relative"
-            >
-              About
-              <span className="absolute -bottom-0.5 left-0 h-[1px] w-0 bg-gradient-to-r from-[#4285F4] via-[#DB4437] to-[#F4B400] group-hover:w-full group-focus:w-full transition-all duration-300 ease-in-out"></span>
-            </a>
-
-            <a
-              href="#projects"
-              className="group text-gray-300 text-lg transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#4285F4] hover:via-[#DB4437] hover:to-[#F4B400] relative"
-            >
-              Projects
-              <span className="absolute -bottom-0.5 left-0 h-[1px] w-0 bg-gradient-to-r from-[#4285F4] via-[#DB4437] to-[#F4B400] group-hover:w-full group-focus:w-full transition-all duration-300 ease-in-out"></span>
-            </a>
-
-            <a
-              href="#contact"
-              className="group text-gray-300 text-lg transition-all hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-[#4285F4] hover:via-[#DB4437] hover:to-[#F4B400] relative"
-            >
-              Contact
-              <span className="absolute -bottom-0.5 left-0 h-[1px] w-0 bg-gradient-to-r from-[#4285F4] via-[#DB4437] to-[#F4B400] group-hover:w-full group-focus:w-full transition-all duration-300 ease-in-out"></span>
-            </a>
-
-
-          
+          <div className="hidden md:flex items-center gap-1">
+            {[
+              { label: "Home", href: "#home" },
+              { label: "About", href: "#about" },
+              { label: "Projects", href: "#projects" },
+              { label: "Contact", href: "#contact" },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="group relative rounded-full px-4 py-2 text-sm text-white/60 transition-colors duration-200 hover:text-white"
+              >
+                {link.label}
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 rounded-full bg-gradient-to-r from-teal-300 to-indigo-400 transition-all duration-300 group-hover:w-5" />
+              </a>
+            ))}
 
             <button
               onClick={toggleLightMode}
-              className="group rounded-lg p-1 hover:text-accent focus:text-accent focus:outline-none focus:bg-bg-secondary cursor-pointer w-fit transition-all duration-200"
+              aria-label="Toggle theme"
+              className="ml-2 rounded-full border border-white/10 bg-white/5 p-2 text-white/70 backdrop-blur-md transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:text-white"
             >
-              <GoSun className="text-2xl group-hover:text-accent group-hover:scale-110 hover:text-[#F4B400] transition-all duration-200" />
+              <GoSun className="text-lg transition-transform duration-300 hover:scale-110 hover:text-amber-400" />
             </button>
           </div>
         </div>

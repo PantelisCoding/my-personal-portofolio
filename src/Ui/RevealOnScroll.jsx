@@ -1,44 +1,51 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from "react";
 
-const RevealOnScroll = ({ children }) => {
+export default function RevealOnScroll({
+  children,
+  className = "",
+  delay = 0,
+  as: Tag = "div",
+}) {
   const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          console.log("Entry observed:", entry); // Debugging
-          if (entry.isIntersecting) {
-            console.log("Element is visible:", entry.target); // Debugging
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1, // Adjust this value as needed
-      }
-    );
+    const el = ref.current;
+    if (!el) return;
 
-    if (ref.current) {
-      console.log("Observing element:", ref.current); // Debugging
-      observer.observe(ref.current);
+    // Respect reduced motion
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReduced) {
+      setVisible(true);
+      return;
     }
 
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <div ref={ref} className="reveal">
+    <Tag
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out will-change-transform ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+      } ${className}`}
+    >
       {children}
-    </div>
+    </Tag>
   );
-};
-
-export default RevealOnScroll;
+}
